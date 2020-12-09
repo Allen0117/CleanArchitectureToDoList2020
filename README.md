@@ -1,7 +1,8 @@
-# CleanArchitectureToDoList2020
-# BackEnd Use Clean-Architecture + Java In Spring Boot
-## Project descript
-### ToDoList
-```
-Develop ToDoList Restful Api through Spring Boot 
-```
+# CleanArchitectureToDoList2020 - ReadMe
+###### tags: `ToDoList` 
+## **Project Desciption**
+This Project use Clean Architecture concept to develop,because I think it can help 
+(1) Independent of Framework
+(2) Testable
+(3) Independent of UI
+(4) Independent of DataBase
