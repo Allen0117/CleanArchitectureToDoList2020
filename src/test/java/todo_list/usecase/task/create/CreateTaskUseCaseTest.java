@@ -1,5 +1,6 @@
 package todo_list.usecase.task.create;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,27 +24,22 @@ public class CreateTaskUseCaseTest {
     public void test_create_task_use_case() {
         Assert.assertEquals(0, this.taskRepository.findAll().size());
 
-        final String taskTitle = "createTaskUseCase";
-        final String taskDescription = "Use TDD develop todo_list";
-
         CreateTaskUseCase createTaskUseCase = new CreateTaskUseCase(this.taskRepository);
 
         CreateTaskInput createTaskInput = createTaskUseCase.createInput();
-        createTaskInput.setTaskTitle(taskTitle);
-        createTaskInput.setTaskDescription(taskDescription);
-
+        createTaskInput.setTaskTitle("createTaskUseCase");
+        createTaskInput.setTaskDescription("Use TDD develop todo_list");
         CreateTaskPresenter createTaskPresenter = new CreateTaskPresenter();
 
         createTaskUseCase.execute(createTaskInput, createTaskPresenter);
 
         CreateTaskViewModel createTaskViewModel = createTaskPresenter.buildCreateTaskViewModel();
 
-        Assert.assertEquals(1, this.taskRepository.findAll().size());
-
         TaskEntity taskEntity = this.taskRepository.findById(createTaskViewModel.getTaskId());
-
         Task task = TaskEntityMapper.mappingTaskFrom(taskEntity);
 
+
+        Assert.assertEquals(1, this.taskRepository.findAll().size());
         Assert.assertEquals(createTaskViewModel.getTaskId(), task.getId());
         Assert.assertEquals(createTaskViewModel.getTaskTitle(), task.getTitle());
         Assert.assertEquals(createTaskViewModel.getTaskDescription(), task.getDescription());

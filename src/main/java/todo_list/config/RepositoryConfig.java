@@ -9,7 +9,7 @@ import todo_list.usecase.task.repository.ITaskRepository;
 public class RepositoryConfig {
 
     @Bean
-    public ITaskRepository createTaskRepository() {
+    public ITaskRepository createInMemoryTaskRepository() {
         return new InMemoryTaskRepository();
     }
 }

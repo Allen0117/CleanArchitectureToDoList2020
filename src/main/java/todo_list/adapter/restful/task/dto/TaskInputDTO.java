@@ -1,6 +1,6 @@
 package todo_list.adapter.restful.task.dto;
 
-public class TaskDTO {
+public class TaskInputDTO {
     private String title;
     private String description;
 

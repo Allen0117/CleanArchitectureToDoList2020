@@ -35,8 +35,6 @@ public class GetAllTaskUseCaseTest {
         createTask("createTaskUseCase", "Use TDD develop todo_list");
         createTask("getAllTasksUseCase", "Use Clean Architecture develop todo_list");
 
-        Assert.assertEquals(2, this.taskRepository.findAll().size());
-
         GetAllTaskUseCase getAllTaskUseCase = new GetAllTaskUseCase(this.taskRepository);
         GetAllTaskInput getAllTaskInput = getAllTaskUseCase.createInput();
         GetAllTasksPresenter getAllTasksPresenter = new GetAllTasksPresenter();
@@ -45,11 +43,11 @@ public class GetAllTaskUseCaseTest {
 
         List<GetAllTasksViewModel> getAllTasksViewModels = getAllTasksPresenter.buildGetAllTasksTaskViewModel();
 
-        Assert.assertEquals(2, getAllTasksViewModels.size());
-
         Task firstTask = getTask(getAllTasksViewModels.get(0).getTaskId());
         Task secondTask = getTask(getAllTasksViewModels.get(1).getTaskId());
 
+        Assert.assertEquals(2, this.taskRepository.findAll().size());
+        Assert.assertEquals(2, getAllTasksViewModels.size());
         Assert.assertEquals("createTaskUseCase", firstTask.getTitle());
         Assert.assertEquals("Use TDD develop todo_list", firstTask.getDescription());
         Assert.assertEquals("getAllTasksUseCase", secondTask.getTitle());
